@@ -1,23 +1,15 @@
-  
+---
+kind: pipeline
+type: exec
+name: default
 
-workspace:
-  base: /node
-  path: drone/node-example
+platform:
+  os: linux
+  arch: amd64
 
-clone:
-  git:
-    image: plugins/git
-    depath: 50
-    tags: true
+steps:
+- name: greeting
+  commands:
+  - echo hello world
 
-pipeline:
-  frontend:
-    image: node:8.3.0
-    commands:
-      - echo frontend
-      - exit 1
-
-  backend:
-    image: node:8.3.0
-    commands:
-      - echo backend
+...
