@@ -1,14 +1,23 @@
   
-pipeline:
-  test-prep:
-    image: mongo
-    commands:
-    - mongoimport --db test_db --collection widgets --type json --file seed.json --jsonArray
-  test:
-    image: mongo
-    commands:
-    - mongo --eval "db.widgets.find({});" test_db
 
-services:
-  mongo:
-    image: mongo
+workspace:
+  base: /node
+  path: drone/node-example
+
+clone:
+  git:
+    image: plugins/git
+    depath: 50
+    tags: true
+
+pipeline:
+  frontend:
+    image: node:8.3.0
+    commands:
+      - echo frontend
+      - exit 1
+
+  backend:
+    image: node:8.3.0
+    commands:
+      - echo backend
